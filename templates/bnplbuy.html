@@ -1,0 +1,51 @@
+{% extends "bnplbase.html"%}
+
+{% block title%}
+BNPL HOME
+{%endblock title%}
+
+{% block addcss %}
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+.grid-item {
+    background-color: #f1f1f1;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+{% endblock %}
+
+{%block body%}
+<div class="content">
+    <h1 style="text-align:center;"> Buy Item </h1>
+    <div class="grid-container">
+        <form method="post" action = "/buy">
+            {% csrf_token %}
+            <div class="grid-item">
+                <label for="itemid">Item Id</label>
+                <input type="text" class="form-control" name="itemid" id="itemid" placeholder="abc123">
+            </div>
+            <div class="grid-item">
+                <label for="quantity">Quantity</label>
+                <input type="number" class="form-control" name="quantity" id="quantity" placeholder="15">
+            </div>
+            <div class="grid-item">
+                <label for="options">Payment option</label>
+                <select class="form-control" name="payment" id="payment">
+                    <option value="1">Prepaid</option>
+                    <option value="2">BNPL</option>
+                </select>
+            </div>
+            <div class="grid-item">
+            <button class="grid-item" type="submit">Buy</button> </div>
+        </form>
+    </div>
+
+</div>
+{%endblock%}
